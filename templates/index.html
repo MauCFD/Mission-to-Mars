@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1 class="display-4" >Mission to Mars</h1>
+      <a class="btn btn-lg text-white" style="background-color:blue; color: white;" href="/scrape" role="button">Scrape New Data</a>
+    </div>
+
+    <div class="container">
+      <h2>Latest Mars News</h2>
+      <h4>{{ data.title }}</h4>
+      <p>{{ data.paragraph }}</p>
+    </div>
+
+    <div class="container">
+      <div class='row'>
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xm-12">
+          <h3>Featured Mars Image</h3>
+          <img src="{{ data.image_url }}" style="max-width:100%; max-height: auto;" alt="mars image">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xm-12">
+          <br>
+          <h5>Mars Facts</h5>
+          <p class="card-text"id="dark-font" >{{ data.facts | safe }}</p>
+        </div>
+      </div>
+    </div>
+    <h3 style="padding-top:30px; text-align: center;">Mars Hemispheres</h3>
+    <div class='card-deck'>
+      <div class='col-md-12'>
+        <div class="row">
+          {% for item in data.hem_img_urls %}
+          <div class="col-md-6">
+            <div class="card text-white bg-dark" style="margin: 30px;">
+              <img class="card-img-top" src="{{item.img_url}}" />
+              <div class="card-body">
+                <p class="card-text">{{ item.title }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
